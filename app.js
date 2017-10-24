@@ -1,6 +1,21 @@
 // set up new AngularJS app and created new controller
 
-angular.module('flapperNews', [])
+// ui-router is newer and provides more flexibility and features than traditionally-used ngRoute
+angular.module('flapperNews', ['ui.router'])
+// created a config block for app and configured home state
+.config([
+  '$stateProvider',
+  '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: '/home.html',
+        controller: 'MainCtrl'
+      });
+    // 'otherwise()' used to redirect to unspecified routes
+    $urlRouterProvider.otherwise('home');
+  }])
 .factory('posts', [function(){
   // created a new object with array property ('posts'). The variable is returned so that 'o' object is exposed to any Angular module that injects it
   var o = {
@@ -12,6 +27,7 @@ angular.module('flapperNews', [])
 // scope variable is a bridge between controllers and templates - bind functions or variables you want available in template to $scope
 function($scope, posts) {
   $scope.test = 'Hello world!';
+  $scope.posts = posts.posts;
   // creating a new variable that defines a list of post titles
   $scope.posts = [
     {title: 'post 1', upvotes: 5},
