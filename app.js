@@ -8,9 +8,9 @@ angular.module('flapperNews', [])
   };
   return o;
 }])
-.controller('MainCtrl', ['$scope',
+.controller('MainCtrl', ['$scope', 'posts',
 // scope variable is a bridge between controllers and templates - bind functions or variables you want available in template to $scope
-function($scope) {
+function($scope, posts) {
   $scope.test = 'Hello world!';
   // creating a new variable that defines a list of post titles
   $scope.posts = [
