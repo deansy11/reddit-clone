@@ -1,6 +1,13 @@
 // set up new AngularJS app and created new controller
 
 angular.module('flapperNews', [])
+.factory('posts', [function(){
+  // created a new object with array property ('posts'). The variable is returned so that 'o' object is exposed to any Angular module that injects it
+  var o = {
+    posts: []
+  };
+  return o;
+}])
 .controller('MainCtrl', ['$scope',
 // scope variable is a bridge between controllers and templates - bind functions or variables you want available in template to $scope
 function($scope) {
