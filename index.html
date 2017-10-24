@@ -9,7 +9,7 @@
   <body ng-app="flapperNews" ng-controller="MainCtrl">
       <!-- 'post' is assigned in the controller (app.js) and the contents will display here -->
     <div ng-repeat="post in posts">
-      {{ post }}
+      {{ post.title }} - upvotes: {{ post.upvotes }}
     </div>
   </body>
 </html>
