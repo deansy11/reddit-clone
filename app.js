@@ -15,6 +15,12 @@ function($scope) {
   ];
   // function that will add object into posts array
   $scope.addPost = function() {
-    $scope.posts.push({title: 'A new post!', upvotes: 0});
+    // prevents users from submitting blank post
+    if(!$scope.title || $scope.title === '') {
+      return;
+    }
+    // added posts now get title from $scope.title
+    $scope.posts.push({title: $scope.title, upvotes: 0});
+    $scope.title = '';
   };
 }]);
