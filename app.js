@@ -20,8 +20,13 @@ function($scope) {
       return;
     }
     // added posts now get title from $scope.title
-    $scope.posts.push({title: $scope.title, upvotes: 0});
+    $scope.posts.push({
+      title: $scope.title,
+      link: $scope.link,
+      upvotes: 0
+    });
     $scope.title = '';
+    $scope.link = '';
   };
   // function enabling upvote
   $scope.incrementUpvotes = function(post) {
