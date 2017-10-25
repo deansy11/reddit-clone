@@ -1,20 +1,28 @@
 // set up new AngularJS app and created new controller
 
 // ui-router is newer and provides more flexibility and features than traditionally-used ngRoute
-angular.module('flapperNews', ['ui.router'])
-// created a config block for app and configured home state
+angular.module('flapperNews', [ 'ui.router'])
+// created a config block for app and configured home route
 .config([
   '$stateProvider',
   '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
+
     $stateProvider
       .state('home', {
         url: '/home',
         templateUrl: '/home.html',
         controller: 'MainCtrl'
       });
-    // 'otherwise()' used to redirect to unspecified routes
+      // add state for indiviudal post access
+      .state('posts', {
+        url: '/posts/{id}', //'id' here is a route param
+        templateUrl: '/posts.html',
+        controller: 'PostsCtrl'
+      });
+
     $urlRouterProvider.otherwise('home');
+
   }])
 .factory('posts', [function(){
   // created a new object with array property ('posts'). The variable is returned so that 'o' object is exposed to any Angular module that injects it
@@ -56,3 +64,11 @@ function($scope, posts) {
     post.upvotes += 1;
   }
 }]);
+
+// injecting 'posts' factory into controller to access comments data
+.controller('PostsCtrl', [
+  '$scope',
+  '$stateParams',
+  'posts',
+  function($scope, $stateParams, posts)
+]);

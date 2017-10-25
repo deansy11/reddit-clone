@@ -16,9 +16,12 @@
     </style>
   </head>
 
-  <body ng-app="flapperNews" ng-controller="MainCtrl">
+  <body ng-app="flapperNews">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
+        <ui-view></ui-view>
+      </div>
+    </div>
 
         <div class="page-header">
           <h1>Flapper News</h1>
@@ -26,7 +29,7 @@
 
         <div ng-repeat="post in posts | orderBy:'-upvotes'">
           <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>
-          {{ post.upvotes }}
+            {{ post.upvotes }}
           <span style="font-size:20px; margin-left:10px;">
             <a ng-show="post.link" href="{{ post.link }}">
               {{ post.title }}
@@ -52,5 +55,12 @@
 
       </div>
     </div>
+    <!-- inline 'home' template -->
+    <script type="text/ng-template" id="/home.html">
+      <div class="page-header">
+        <h1>Flapper News</h1>
+      </div>
+
+    </script>
   </body>
 </html>
